@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"No Reload"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+aobscanmodule(reload,mgsvtpp.exe,66 44 89 1C 48 49) // should be unique
+alloc(newmem,$1000,reload) //"mgsvtpp.exe"+8E9EA30)
+
+label(code)
+label(return)
+
+newmem:
+  mov r11w,[rax+rcx*2]
+code:
+  mov [rax+rcx*2],r11w
+  jmp return
+
+reload:
+  jmp newmem
+return:
+registersymbol(reload)
+
+[DISABLE]
+
+reload:
+  db 66 44 89 1C 48
+
+unregistersymbol(reload)
+dealloc(newmem)
+
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>103</Key>
+          </Keys>
+          <ID>0</ID>
+        </Hotkey>
+      </Hotkeys>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"Unlimited Ammo"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+aobscanmodule(ammoTest,mgsvtpp.exe,66 41 0F 42 D1) // should be unique
+alloc(newmem,$1000,ammoTest) //"mgsvtpp.exe"+8E9EBBD)
+
+label(code)
+label(return)
+
+newmem:
+  mov r9w,dx
+code:
+  cmovb dx,r9w
+  jmp return
+
+ammoTest:
+  jmp newmem
+return:
+registersymbol(ammoTest)
+
+aobscanmodule(dwalkerAmmo,mgsvtpp.exe,66 41 89 4A 04 F3 C3) // should be unique
+
+dwalkerAmmo:
+  db 90 90 90 90 90
+registersymbol(dwalkerAmmo)
+
+[DISABLE]
+
+ammoTest:
+  db 66 41 0F 42 D1
+
+unregistersymbol(ammoTest)
+dealloc(newmem)
+
+dwalkerAmmo:
+  db 66 41 89 4A 04
+
+unregistersymbol(dwalkerAmmo)
+
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>104</Key>
+          </Keys>
+          <ID>0</ID>
+        </Hotkey>
+      </Hotkeys>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16273</ID>
+      <Description>"More CHEATS AVAILABLE HERE"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$LUA}
+  if syntaxcheck then return end
+  [ENABLE]
+
+--Updated table! (Start)
+    --messageDialog('Enable Dark Mode?', mtInformation,mbYes,mbNo)
+    if messageDialog("Updated table with more cheats available!\r\n\r\nYou will need Mod Engine to get more cheats and the new updated table\r\n\r\nDownload Mod Engine?", mtConfirmation, mbYes, mbNo) ==mrYes then
+       shellExecute("https://modengine.net")
+    else
+    end
+--Updated table! (End)
+  [DISABLE]
+
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <LuaScript>--Updated table! (Start)
+    --messageDialog('Enable Dark Mode?', mtInformation,mbYes,mbNo)
+    if messageDialog("Updated table with more cheats available!\r\n\r\nYou will need Mod Engine to get more cheats and the new updated table\r\n\r\nDownload Mod Engine?", mtConfirmation, mbYes, mbNo) ==mrYes then
+       shellExecute("https://modengine.net")
+    else
+    end
+--Updated table! (End)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</LuaScript>
+</CheatTable>

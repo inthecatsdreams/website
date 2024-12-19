@@ -1,0 +1,7 @@
+*.mp4
+*.jpg
+*.mkv
+*.mp3
+resources/
+resources/*
+*.CT
